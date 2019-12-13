@@ -1,6 +1,8 @@
 package Serviços;
 
+import Entidades.AluguelVeículo;
+
 public interface TaxaServiço {
 
-	double tax(double total);
+	double taxa(AluguelVeículo aluguelVeículo, double preco);
 }

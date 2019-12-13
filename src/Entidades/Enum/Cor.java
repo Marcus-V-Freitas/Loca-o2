@@ -1,10 +1,12 @@
 package Entidades.Enum;
 
 public enum Cor {
-	PRETO,
-	AZUL,
-	VERMELHO,
 	AMARELO,
+	AZUL,
+	BRANCO,
+	CINZA,
+	LARANJA,
+	PRETO,
 	VERDE,
-	BRANCO;
+	VERMELHO;
 }

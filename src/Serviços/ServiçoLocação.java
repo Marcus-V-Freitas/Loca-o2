@@ -2,34 +2,35 @@ package Serviços;
 
 import Entidades.AluguelVeículo;
 import Entidades.FaturaLocação;
+import Entidades.Enum.Seguro;
 
 public class ServiçoLocação {
-	private double precoHora;
-	private double precoDia;
+
+	private double preco;
+	private TaxaSeguro taxaSeguro;
 	private TaxaServiço taxaServico;
-	
-	public ServiçoLocação(double precoHora, double precoDia, TaxaServiço taxa) {
-		super();
-		this.precoHora = precoHora;
-		this.precoDia = precoDia;
-		this.taxaServico = taxa;
+
+	public ServiçoLocação(double preco, TaxaServiço taxaServiço, TaxaSeguro taxaSeguro) {
+		this.preco = preco;
+		this.taxaServico = taxaServiço;
+		this.taxaSeguro = taxaSeguro;
 	}
-	
+
 	public void EmitirFatura(AluguelVeículo aluguelVeículo) {
-		long t1=aluguelVeículo.getFim().getTime();
-		long t2=aluguelVeículo.getInicio().getTime();
-		
-		double horas=(t1-t2)/1000/60/60;
-		double valorCaucao;
-		
-		if(horas<=12.0) {
-			valorCaucao=Math.ceil(horas)*precoHora;
-		}else {
-			valorCaucao=Math.ceil(horas/24)*precoDia;
+
+		Seguro seguro = aluguelVeículo.getVeiculo().getSeguro();
+
+		double valorBasico = taxaServico.taxa(aluguelVeículo, preco);
+		double taxa = 0.0;
+
+		if (seguro == Seguro.CDW) {
+			taxa = taxaSeguro.taxa(valorBasico);
+		} else {
+			taxa = taxaSeguro.taxa(valorBasico);
 		}
-		double taxa=taxaServico.tax(valorCaucao);
-		aluguelVeículo.setFaturaLocação(new FaturaLocação(valorCaucao, taxa));
-		
+
+		aluguelVeículo.setFaturaLocação(new FaturaLocação(valorBasico, taxa));
+
 	}
-	
+
 }

@@ -7,7 +7,7 @@ public class Modelo {
 	public Modelo(String nomeModelo, Marca marca) {
 		super();
 		this.nomeModelo = nomeModelo;
-		this.marca=marca;
+		this.marca = marca;
 	}
 
 	public String getNomeModelo() {
@@ -25,6 +25,5 @@ public class Modelo {
 	public void setMarca(Marca marca) {
 		this.marca = marca;
 	}
-	
-	
+
 }

@@ -1,21 +1,21 @@
 package Entidades;
 
 public class FaturaLocação {
-	private double valorCaucao;
+	private double valorBasico;
 	private double taxa;
-	
-	public FaturaLocação(double valorCaucao, double taxa) {
+
+	public FaturaLocação(double valorBasico, double taxa) {
 		super();
-		this.valorCaucao = valorCaucao;
+		this.valorBasico = valorBasico;
 		this.taxa = taxa;
 	}
 
-	public double getValorCaucao() {
-		return valorCaucao;
+	public double getValorBasico() {
+		return valorBasico;
 	}
 
-	public void setValorCaucao(double valorCaucao) {
-		this.valorCaucao = valorCaucao;
+	public void setValorBasico(double valorBasico) {
+		this.valorBasico = valorBasico;
 	}
 
 	public double getTaxa() {
@@ -23,12 +23,10 @@ public class FaturaLocação {
 	}
 
 	public void setTaxa(double taxa) {
-		this.taxa= taxa;
+		this.taxa = taxa;
 	}
-	
-	public double valorTotal() {
-		return getTaxa()+getValorCaucao();
-	}
-	
-}
 
+	public double valorTotal() {
+		return getTaxa() + getValorBasico();
+	}
+}
